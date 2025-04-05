@@ -1,0 +1,115 @@
+
+-- START creature_queststarter
+SET
+@id := 4732,
+@quest := 91100000;
+
+DELETE FROM creature_queststarter WHERE
+    id=@id AND
+    quest=@quest
+;
+
+INSERT INTO creature_queststarter (
+    `id`,
+    `quest`
+)
+VALUES (
+    @id,
+    @quest
+);
+-- EOF creature_queststarter
+-- START creature_queststarter
+SET
+@id := 4772,
+@quest := 91100001;
+
+DELETE FROM creature_queststarter WHERE
+    id=@id AND
+    quest=@quest
+;
+
+INSERT INTO creature_queststarter (
+    `id`,
+    `quest`
+)
+VALUES (
+    @id,
+    @quest
+);
+-- EOF creature_queststarter
+-- START creature_queststarter
+SET
+@id := 4753,
+@quest := 91100002;
+
+DELETE FROM creature_queststarter WHERE
+    id=@id AND
+    quest=@quest
+;
+
+INSERT INTO creature_queststarter (
+    `id`,
+    `quest`
+)
+VALUES (
+    @id,
+    @quest
+);
+-- EOF creature_queststarter
+-- START creature_queststarter
+SET
+@id := 7954,
+@quest := 91100003;
+
+DELETE FROM creature_queststarter WHERE
+    id=@id AND
+    quest=@quest
+;
+
+INSERT INTO creature_queststarter (
+    `id`,
+    `quest`
+)
+VALUES (
+    @id,
+    @quest
+);
+-- EOF creature_queststarter
+-- START creature_queststarter
+SET
+@id := 20914,
+@quest := 91100004;
+
+DELETE FROM creature_queststarter WHERE
+    id=@id AND
+    quest=@quest
+;
+
+INSERT INTO creature_queststarter (
+    `id`,
+    `quest`
+)
+VALUES (
+    @id,
+    @quest
+);
+-- EOF creature_queststarter
+-- START creature_queststarter
+SET
+@id := 4752,
+@quest := 91100011;
+
+DELETE FROM creature_queststarter WHERE
+    id=@id AND
+    quest=@quest
+;
+
+INSERT INTO creature_queststarter (
+    `id`,
+    `quest`
+)
+VALUES (
+    @id,
+    @quest
+);
+-- EOF creature_queststarter

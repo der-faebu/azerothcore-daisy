@@ -1,0 +1,220 @@
+
+vars  :
+# # Races
+#   RACE_HUMAN: &RACE_HUMAN 1
+#   RACE_ORC: &RACE_ORC 2
+#   RACE_DWARF: &RACE_DWARF 4
+#   RACE_NIGHT_ELF: &RACE_NIGHT_ELF 8
+#   RACE_UNDEAD: &RACE_UNDEAD 16
+#   RACE_TAUREN: &RACE_TAUREN 32
+#   RACE_GNOME: &RACE_GNOME 64
+#   RACE_TROLL: &RACE_TROLL 128
+#   RACE_GOBLIN: &RACE_GOBLIN 256
+#   RACE_BLOOD_ELF: &RACE_BLOOD_ELF 512
+#   RACE_DRAENEI: &RACE_DRAENEI 1024
+
+
+# Mounts
+  # Alliance
+  mountAllianceHumanBasic: &mountAllianceHumanBasic 2411
+  mountAllianceDwarfBasic: &mountAllianceDwarfBasic 5864
+  mountAllianceNightElfBasic: &mountAllianceNightElfBasic 8629
+  mountAllianceGnomeBasic: &mountAllianceGnomeBasic 13322
+  mountAllianceDraineiBasic: &mountAllianceDraineiBasic 28481
+
+  # Horde 
+  mountHordeOrcBasic: &mountHordeOrcBasic 5665
+  mountHordeUndeadBasic: &mountHordeUndeadBasic 13331
+  mountHordeTaurenBasic: &mountHordeTaurenBasic 15277
+  mountHordeTrollBasic: &mountHordeTrollBasic 8588
+  mountHordeBloodElfBasic: &mountHordeBloodElfBasic 29221
+
+# Trainers / Quest Givers
+  # Alliance
+  ridingTrainerHumanRandalHunter: &ridingTrainerHumanRandalHunter 4732
+  ridingTrainerNightElfJartsam: &ridingTrainerNightElfJartsam 4753
+  ridingTrainerDwarfUlthamIronhorn: &ridingTrainerDwarfUlthamIronhorn 4772
+  ridingTrainerGnomeBinjyFeatherwhistle: &ridingTrainerGnomeBinjyFeatherwhistle 7954
+  ridingTrainerDraneiAalun: &ridingTrainerDraneiAalun 20914
+
+  # Horde 
+  ridingTrainerOrcKildar: &ridingTrainerOrcKildar 4752
+
+# Quests
+  # Alliance
+  ridingTrainerHumanRandalHunterQuest: &ridingTrainerHumanRandalHunterQuest 91100000
+  ridingTrainerDwarfUlthamIronhornQuest: &ridingTrainerDwarfUlthamIronhornQuest 91100001
+  ridingTrainerNightElfJartsamQuest: &ridingTrainerNightElfJartsamQuest 91100002
+  ridingTrainerGnomeBinjyFeatherwhistleQuest: &ridingTrainerGnomeBinjyFeatherwhistleQuest 91100003
+  ridingTrainerDraneiAalunQuest: &ridingTrainerDraneiAalunQuest 91100004
+  # Horde
+  ridingTrainerOrcKildarQuest: &ridingTrainerOrcKildarQuest 91100011
+
+# Requirements
+  levelRequirement: &levelRequirement 5
+
+update:
+  - table: item_template
+    columns:
+      requiredlevel: *levelRequirement
+    where: 
+      entry: # these OR-ed together: a OR b or C etc
+        - *mountAllianceHumanBasic
+        - *mountAllianceDwarfBasic
+        - *mountAllianceNightElfBasic
+        - *mountAllianceGnomeBasic
+        - *mountAllianceDraineiBasic
+        - *mountHordeOrcBasic
+        - *mountHordeUndeadBasic
+        - *mountHordeTaurenBasic
+        - *mountHordeTrollBasic
+        - *mountHordeBloodElfBasic
+
+  - table: npc_trainer
+    columns:
+      moneycost: 100
+      reqlevel: *levelRequirement
+    where:
+      SpellID:
+        - 33388
+
+tables:
+  quest_template:
+  # Human
+    - id: *ridingTrainerHumanRandalHunterQuest
+      questtype: 0
+      questlevel: *levelRequirement
+      minlevel: *levelRequirement
+      rewarditem1: *mountAllianceHumanBasic
+      rewardamount1: 1
+      allowableraces: *RACE_HUMAN
+      logtitle: "The Road Ahead"
+# Dwarf
+    - id: *ridingTrainerDwarfUlthamIronhornQuest
+      questtype: 0
+      questlevel: *levelRequirement
+      minlevel: *levelRequirement
+      rewarditem1: *mountAllianceDwarfBasic
+      rewardamount1: 1
+      allowableraces: *RACE_DWARF
+      logtitle: "Stone and Steel"
+# Night Elf
+    - id: *ridingTrainerNightElfJartsamQuest
+      questtype: 0
+      questlevel: *levelRequirement
+      minlevel: *levelRequirement
+      rewarditem1: *mountAllianceNightElfBasic
+      rewardamount1: 1
+      allowableraces: *RACE_NIGHT_ELF
+      logtitle: "Winds of the Ancients"
+# Gnome
+    - id: *ridingTrainerGnomeBinjyFeatherwhistleQuest
+      questtype: 0
+      questlevel: *levelRequirement
+      minlevel: *levelRequirement
+      rewarditem1: *mountAllianceGnomeBasic
+      rewardamount1: 1
+      allowableraces: *RACE_GNOME
+      logtitle: "Tinker, Ride, Triumph!"
+# Dranei
+    - id: *ridingTrainerDraneiAalunQuest
+      questtype: 0
+      questlevel: *levelRequirement
+      minlevel: *levelRequirement
+      rewarditem1: *mountAllianceGnomeBasic
+      rewardamount1: 1
+      allowableraces: *RACE_DRAENEI
+      logtitle: "Path of the Exalted"
+
+# Horde
+# Orc 
+    - id: *ridingTrainerOrcKildarQuest
+      questtype: 0
+      questlevel: *levelRequirement
+      minlevel: *levelRequirement
+      rewarditem1: *mountHordeOrcBasic
+      rewardamount1: 1
+      allowableraces: *RACE_ORC
+      logtitle: "The Hero's Mount"
+
+  quest_offer_reward:
+# Alliance
+  # Human
+    - id: *ridingTrainerHumanRandalHunterQuest
+      rewardtext: |
+        You've proven yourself with sword and wit, $N. But no hero walks alone — not in these troubled times.
+        The road ahead is long, and the weight of destiny rides heavy. It's time you had a steed worthy of your cause.
+        Take this mount, and ride not just for Stormwind, but for all who believe in the light of honour and justice.k
+  # Dwarf 
+    - id: *ridingTrainerDwarfUlthamIronhornQuest
+      rewardtext: |
+        Aye, $N, ye've got the grit of Ironforge in yer bones. We dwarves don't hand out favours lightly — but you've earned your place.
+        Yer ancestors braved the mountains with pick and axe. Now, you ride forth to carve a new legend.
+        Take this beast and show the world the strength of stone-born hearts.
+  # Night Elf 
+    - id: *ridingTrainerNightElfJartsamQuest
+      rewardtext: |
+        The forest speaks your name, $N, as one chosen by fate.
+        It is time to move beyond the shadows of the trees and carry our legacy to the wider world.
+        This companion will carry you swiftly, silently, as the winds of Elune guide your steps toward destiny.
+  # Gnome  
+    - id: *ridingTrainerGnomeBinjyFeatherwhistleQuest
+      rewardtext: |
+        You're a marvel, $N! Brilliant, brave, and just the right amount of reckless.
+        Gnomeregan needs more than brains — it needs heroes who can go the distance, fast!
+        Here, take this mount. It's been enhanced with only mildly unstable tech. Ride on and spark change in every corner of Azeroth!
+  # Dranei  
+    - id: *ridingTrainerDraneiAalunQuest
+      rewardtext: |
+        You have taken your first steps on a path greater than yourself, $N.
+        The Naaru see promise in you — and so do I.
+        May this gift speed you toward your calling. With every hoofbeat, remember: you ride not for glory, but for the Light and those who walk in its radiance.
+# Horde
+  # Orc
+    - id: *ridingTrainerOrcKildarQuest
+      rewardtext: |
+        Looks like you're some kind of great hero the Warchief thinks highly of. They told me to give you this mount. Hope it helps, but don't think you'll get riding lessons for free. I gotta charge something, hero or not.
+
+  creature_queststarter:
+# Human
+    - id: *ridingTrainerHumanRandalHunter
+      quest: *ridingTrainerHumanRandalHunterQuest
+# Dwarf
+    - id: *ridingTrainerDwarfUlthamIronhorn
+      quest: *ridingTrainerDwarfUlthamIronhornQuest
+# Night Elf
+    - id: *ridingTrainerNightElfJartsam
+      quest: *ridingTrainerNightElfJartsamQuest
+# Gnome
+    - id: *ridingTrainerGnomeBinjyFeatherwhistle
+      quest: *ridingTrainerGnomeBinjyFeatherwhistleQuest
+# Dranei
+    - id: *ridingTrainerDraneiAalun
+      quest: *ridingTrainerDraneiAalunQuest
+
+# Horde
+# Orc    
+    - id: *ridingTrainerOrcKildar
+      quest: *ridingTrainerOrcKildarQuest
+  
+  creature_questender:
+# Human
+    - id: *ridingTrainerHumanRandalHunter
+      quest: *ridingTrainerHumanRandalHunterQuest
+# Dwarf
+    - id: *ridingTrainerDwarfUlthamIronhorn
+      quest: *ridingTrainerDwarfUlthamIronhornQuest
+# Night Elf
+    - id: *ridingTrainerNightElfJartsam
+      quest: *ridingTrainerNightElfJartsamQuest
+# Gnome
+    - id: *ridingTrainerGnomeBinjyFeatherwhistle
+      quest: *ridingTrainerGnomeBinjyFeatherwhistleQuest
+# Dranei
+    - id: *ridingTrainerDraneiAalun
+      quest: *ridingTrainerDraneiAalunQuest
+
+# Horde
+# Orc
+    - id: *ridingTrainerOrcKildar
+      quest: *ridingTrainerOrcKildarQuest

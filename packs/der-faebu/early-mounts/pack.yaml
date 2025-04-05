@@ -1,0 +1,8 @@
+daisy:
+  pack:
+    name: Early Mounts
+    version: 1.0.0
+    author: der-faebu
+    homepage: https://
+    source: packs/der-faebu/early-mounts/src
+    build: packs/der-faebu/early-mounts/output
