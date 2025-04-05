@@ -3,7 +3,7 @@
 extractor:
   database:
     db: acore_world
-    hostname: "127.0.0.1"
+    hostname: "wow.gygax.cloud"
     username: "acore"
     password: "acore"
   templates: templates
